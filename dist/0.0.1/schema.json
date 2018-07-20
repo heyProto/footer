@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {},
+  "id": "http://example.com/example.json",
+  "properties": {
+    "data": {
+      "id": "/properties/data",
+      "properties": {
+        "company_icon":{
+          "type":"string",
+          "format":"uri",
+          "title":"Company Icon"
+        },
+        "branding_icon":{
+          "type":"string",
+          "format":"uri",
+          "title":"Branding Icon"
+        },
+        "description":{
+          "type":"string",
+          "title":"Description"
+        },
+        "link_groups":{
+          "type":"array",
+          "title":"Link Group",
+          "id": "/properties/data/link_groups",
+          "items":{
+            "type":"object",
+            "title":"Link Group",
+            "properties": {
+              "heading":{
+                "type":"string",
+                "title":"Link Group Heading"
+              },
+              "links":{
+                "type":"array",
+                "title":"Links",
+                "id": "/properties/data/link_groups/links",
+                "items":{
+                  "type":"object",
+                  "title":"Link",
+                  "properties": {
+                    "text":{
+                      "type":"string",
+                      "title":"Link Text"
+                    },
+                    "link":{
+                      "type":"string",
+                      "format":"uri",
+                      "title":"Link URL"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "bottom_links":{
+          "type":"array",
+          "title":"Bottom Links",
+          "id": "/properties/data/bottom_links",
+          "items":{
+            "type":"object",
+            "title":"Bottom Link",
+            "properties": {
+              "text":{
+                "type":"string",
+                "title":"Link Text"
+              },
+              "link":{
+                "type":"string",
+                "format":"uri",
+                "title": "Link URL"
+              }
+            }
+          }
+        },
+        "copyright":{
+          "type":"string",
+          "title":"Copyright Text"
+        }
+      },
+      "title": "Card Data",
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
