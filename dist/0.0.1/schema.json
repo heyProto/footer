@@ -35,7 +35,7 @@
               "links":{
                 "type":"array",
                 "title":"Links",
-                "id": "/properties/data/link_groups/links",
+                "id": "/properties/data/link_groups/items/links",
                 "items":{
                   "type":"object",
                   "title":"Link",
