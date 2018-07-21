@@ -120,7 +120,7 @@ export default class toFooter extends React.Component {
                             {
                               group.links && group.links.map((link,i)=>{
                                 return(
-                                  <li key={"link-"+i}><a href={link.link}>{link.text}</a></li>
+                                  <li key={"link-"+i}><a rel={link.nofollow ? "nofollow" : "dofollow"} target = {link.is_external ? "_blank" : "_self"} href={link.link}>{link.text}</a></li>
                                 )
                               })
                             }
@@ -138,7 +138,7 @@ export default class toFooter extends React.Component {
                             {
                               group.links && group.links.map((link,i)=>{
                                 return(
-                                  <li key={"link-"+i}><a href={link.link}>{link.text}</a></li>
+                                  <li key={"link-"+i}><a rel={link.nofollow ? "nofollow" : "dofollow"} target = {link.is_external ? "_blank" : "_self"} href={link.link}>{link.text}</a></li>
                                 )
                               })
                             }
@@ -156,11 +156,11 @@ export default class toFooter extends React.Component {
                     data.bottom_links && data.bottom_links.map((blink,i)=>{
                       if(i !== data.bottom_links.length - 1){
                         return(
-                          <div key={"blink-"+i} className="pro-blink"><a href={blink.link}>{blink.text}</a>/ </div>
+                          <div key={"blink-"+i} className="pro-blink"><a rel={blink.nofollow ? "nofollow" : "dofollow"} target = {blink.is_external ? "_blank" : "_self"} href={blink.link}>{blink.text}</a>/ </div>
                         )
                       }else{
                         return(
-                          <div key={"blink-"+i} className="pro-blink"><a href={blink.link}>{blink.text}</a></div>
+                          <div key={"blink-"+i} className="pro-blink"><a rel={blink.nofollow ? "nofollow" : "dofollow"} target = {blink.is_external ? "_blank" : "_self"} href={blink.link}>{blink.text}</a></div>
                         )
                       }
                     })

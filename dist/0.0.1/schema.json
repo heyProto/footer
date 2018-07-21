@@ -48,6 +48,14 @@
                       "type":"string",
                       "format":"uri",
                       "title":"Link URL"
+                    },
+                    "is_external":{
+                      "type":"boolean",
+                      "title":"Is it an external link?"
+                    },
+                    "nofollow":{
+                      "type":"boolean",
+                      "title":"No follow enabled"
                     }
                   }
                 }
@@ -71,6 +79,14 @@
                 "type":"string",
                 "format":"uri",
                 "title": "Link URL"
+              },
+              "is_external":{
+                "type":"boolean",
+                "title":"Is it an external link?"
+              },
+              "nofollow":{
+                "type":"boolean",
+                "title":"No follow enabled"
               }
             }
           }
