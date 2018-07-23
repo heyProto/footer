@@ -25,7 +25,7 @@
   height: 100vh;
   padding-top: 15px;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .default-button {

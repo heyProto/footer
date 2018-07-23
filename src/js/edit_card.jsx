@@ -9,7 +9,7 @@ export default class editToFooter extends React.Component {
     this.state = {
       step: 1,
       dataJSON: {},
-      mode: "laptop",
+      mode: "col16",
       publishing: false,
       schemaJSON: undefined,
       fetchingData: true,
@@ -264,11 +264,17 @@ export default class editToFooter extends React.Component {
               <div className="twelve wide column proto-card-preview proto-share-card-div">
                 <div className="protograph-menu-container">
                   <div className="ui compact menu">
-                    <a className={`item ${this.state.mode === 'laptop' ? 'active' : ''}`}
-                      data-mode='laptop'
+                    <a className={`item ${this.state.mode === 'col16' ? 'active' : ''}`}
+                      data-mode='col16'
                       onClick={this.toggleMode}
                     >
-                      Laptop
+                      16-col
+                    </a>
+                    <a className={`item ${this.state.mode === 'col4' ? 'active' : ''}`}
+                      data-mode='col4'
+                      onClick={this.toggleMode}
+                    >
+                      4-col
                     </a>
                   </div>
                 </div>

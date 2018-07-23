@@ -18,11 +18,15 @@ ProtoGraph.Card.toFooter.prototype.getData = function(data) {
     return this.containerInstance.exportData();
 }
 
-ProtoGraph.Card.toFooter.prototype.renderLaptop = function(data) {
-    this.mode = 'laptop';
+ProtoGraph.Card.toFooter.prototype.renderFourCol = function(data) {
+    this.mode = 'col4';
     this.render();
 }
 
+ProtoGraph.Card.toFooter.prototype.renderSixteenCol = function(data) {
+    this.mode = 'col16';
+    this.render();
+}
 
 ProtoGraph.Card.toFooter.prototype.renderScreenshot = function(data) {
     this.mode = 'screenshot';
