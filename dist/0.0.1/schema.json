@@ -11,10 +11,28 @@
           "format":"uri",
           "title":"Company Icon"
         },
+        "company_name": {
+          "type": "string",
+          "title": "Company Name"
+        },
+        "company_url": {
+          "type": "string",
+          "format": "uri",
+          "title": "Company Url"
+        },
         "branding_icon":{
           "type":"string",
           "format":"uri",
           "title":"Branding Icon"
+        },
+        "branding_name": {
+          "type": "string",
+          "title": "Branding Name"
+        },
+        "branding_url": {
+          "type": "string",
+          "format": "uri",
+          "title": "Branding Url"
         },
         "description":{
           "type":"string",

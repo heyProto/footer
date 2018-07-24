@@ -17,7 +17,11 @@
       "link":"#"
     }],
     "branding_icon":"http://localhost:8080/images/project-logo.png",
+    "branding_name":"Sample Brand",
+    "branding_url":"#",
     "company_icon":"http://localhost:8080/images/publisher-logo.png",
+    "company_name":"Sample Company",
+    "company_url":"#",
     "copyright":"This material may not be published, broadcast, rewritten, or redistributed. ©2018 THE WIRE. All rights reserved.",
     "description":"Manual Scavenging is a moral tragedy. It is also a man-made one. The manual scavenger is inextricably tied to the brutal realities and stubborn inequities of caste. Dr B.R. Ambedkar had pointed out that a scavenger is one not because of the job he does; he becomes one by his birth. The scavenger is very frequently also a She, a doubly invisibilised entity.",
     "link_groups":[{
