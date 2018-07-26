@@ -89,56 +89,38 @@ export default class toFooter extends React.Component {
     return text_obj;
   }
 
-  renderSixteenCol() {
-    let data = this.state.dataJSON.data;
-    if (this.state.fetchingData ){
-      return(<div>Loading</div>)
+  renderHTML(data) {
+    if (this.state.fetchingData) {
+      return (
+        <div></div>
+      )
     } else {
       let check = data.description || data.company_icon || data.branding_icon,
       checkTwo = data.link_groups.length > 0,
-      fix = check ? 5 : 8;
-      return(
+      fix = 5;
+      return (
         <div className="pro-container">
           <div className="pro-publisher-footer">
-            {check && <div className={checkTwo ? "pro-col-5 branding-area" :"pro-col-16 branding-area"}>
+            {check && <div className={checkTwo ? "pro-col-5 branding-area" : "pro-col-16 branding-area"}>
               <div className="project-publisher-branding">
-                {data.company_icon && <div className="publisher-logo" style={{borderRight:data.branding_icon ? "1px solid #efefef":"none"}}><a href={data.company_url} title={data.company_name} target="_blank"><img src={data.company_icon} height="100%" alt={data.company_name}/></a></div>}
-                {data.branding_icon && <div className="project-logo"><a href={data.branding_url} title={data.branding_name} target="_blank"><img src={data.branding_icon} height="100%" alt={data.branding_name}/></a></div>}
+                {data.company_icon && <div className="publisher-logo" style={{ borderRight: data.branding_icon ? "1px solid #efefef" : "none" }}><a href={data.company_url} title={data.company_name} target="_blank"><img src={data.company_icon} height="100%" alt={data.company_name} /></a></div>}
+                {data.branding_icon && <div className="project-logo"><a href={data.branding_url} title={data.branding_name} target="_blank"><img src={data.branding_icon} height="100%" alt={data.branding_name} /></a></div>}
               </div>
               {data.description && <div className="project-publisher-description">
                 <p>{data.description}</p></div>}
             </div>}
-            {checkTwo && <div className={check ? "pro-col-11 links-area":"pro-col-16 links-area"}>
+            {checkTwo && <div className={check ? "pro-col-11 links-area" : "pro-col-16 links-area"}>
               {
-                data.link_groups && data.link_groups.map((group,i)=>{
-                  if((i+1) % fix === 0){
-                    return(
-                      <div key={"group-"+i}>
+                data.link_groups && data.link_groups.map((group, i) => {
+                    return (
+                      <div className="pro-links-group-container" key={"group-" + i}>
                         <div className="pro-links-group">
                           <div className="links-group-title">{group.heading}</div>
                           <ul>
                             {
-                              group.links && group.links.map((link,i)=>{
-                                return(
-                                  <li key={"link-"+i}><a rel={link.nofollow ? "nofollow" : "dofollow"} target = {link.is_external ? "_blank" : "_self"} href={link.link} title={link.text+" | "+data.branding_name}>{link.text}</a></li>
-                                )
-                              })
-                            }
-                          </ul>
-                        </div>
-                        <div className="pro-clear-fix"></div>
-                      </div>
-                    )
-                  }else{
-                    return(
-                      <div key={"group-"+i}>
-                        <div className="pro-links-group">
-                          <div className="links-group-title">{group.heading}</div>
-                          <ul>
-                            {
-                              group.links && group.links.map((link,i)=>{
-                                return(
-                                  <li key={"link-"+i}><a rel={link.nofollow ? "nofollow" : "dofollow"} target = {link.is_external ? "_blank" : "_self"} href={link.link} title={link.text+" | "+data.branding_name}>{link.text} </a></li>
+                              group.links && group.links.map((link, i) => {
+                                return (
+                                  <li key={"link-" + i}><a rel={link.nofollow ? "nofollow" : "dofollow"} target={link.is_external ? "_blank" : "_self"} href={link.link} title={link.text + " | " + data.branding_name}>{link.text} </a></li>
                                 )
                               })
                             }
@@ -146,131 +128,147 @@ export default class toFooter extends React.Component {
                         </div>
                       </div>
                     )
-                  }
                 })
               }
             </div>}
             <div className="pro-col-16">
-                <div className="pro-links-bar">
-                  {
-                    data.bottom_links && data.bottom_links.map((blink,i)=>{
-                      if(i !== data.bottom_links.length - 1){
-                        return(
-                          <div key={"blink-"+i} className="pro-blink"><a rel={blink.nofollow ? "nofollow" : "dofollow"} target = {blink.is_external ? "_blank" : "_self"} href={blink.link} title={blink.text+" | "+data.branding_name}>{blink.text}</a>/ </div>
-                        )
-                      }else{
-                        return(
-                          <div key={"blink-" + i} className="pro-blink"><a rel={blink.nofollow ? "nofollow" : "dofollow"} target={blink.is_external ? "_blank" : "_self"} href={blink.link} title={blink.text + " | " + data.branding_name}>{blink.text}</a></div>
-                        )
-                      }
-                    })
-                  }
-                </div>
-                {data.copyright && <div className="pro-small-text">
-                  {data.copyright}
-                </div>}
-              </div>
-          </div>
-        </div>
-      )
-    }
-  }
-  renderFourCol() {
-    let data = this.state.dataJSON.data;
-    if (this.state.fetchingData ){
-      return(<div>Loading</div>)
-    } else {
-      let check = data.description || data.company_icon || data.branding_icon,
-      checkTwo = data.link_groups.length > 0,
-      fix = 2;
-      return(
-        <div className="pro-column-4">
-          <div className="pro-container">
-            <div className="pro-publisher-footer">
-              {check && <div className={checkTwo ? "pro-col-5 branding-area" :"pro-col-16 branding-area"}>
-                <div className="project-publisher-branding">
-                  {data.company_icon && <div className="publisher-logo" style={{ borderRight: data.branding_icon ? "1px solid #efefef" : "none" }}><a href={data.company_url} title={data.company_name} target="_blank"><img src={data.company_icon} height="100%" alt={data.company_name} /></a></div>}
-                  {data.branding_icon && <div className="project-logo"><a href={data.branding_url} title={data.branding_name} target="_blank"><img src={data.branding_icon} height="100%" alt={data.branding_name} /></a></div>}
-                </div>
-                {data.description && <div className="project-publisher-description">
-                  <p>{data.description}</p></div>}
-              </div>}
-              {checkTwo && <div className={check ? "pro-col-11 links-area":"pro-col-16 links-area"}>
+              <div className="pro-links-bar">
                 {
-                  data.link_groups && data.link_groups.map((group,i)=>{
-                    if((i+1) % fix === 0){
-                      return(
-                        <div className="pro-links-group-container" key={"group-"+i}>
-                          <div className="pro-links-group">
-                            <div className="links-group-title">{group.heading}</div>
-                            <ul>
-                              {
-                                group.links && group.links.map((link,i)=>{
-                                  return(
-                                    <li key={"link-" + i}><a rel={link.nofollow ? "nofollow" : "dofollow"} target={link.is_external ? "_blank" : "_self"} href={link.link} title={link.text + " | " + data.branding_name}>{link.text}</a></li>
-                                  )
-                                })
-                              }
-                            </ul>
-                          </div>
-                          <div className="pro-clear-fix"></div>
-                        </div>
+                  data.bottom_links && data.bottom_links.map((blink, i) => {
+                      return (
+                        <div key={"blink-" + i} className="pro-blink"><a rel={blink.nofollow ? "nofollow" : "dofollow"} target={blink.is_external ? "_blank" : "_self"} href={blink.link} title={blink.text + " | " + data.branding_name}>{blink.text}</a>{(i !== data.bottom_links.length - 1)? "/":""} </div>
                       )
-                    }else{
-                      return(
-                        <div className="pro-links-group-container" key={"group-"+i}>
-                          <div className="pro-links-group">
-                            <div className="links-group-title">{group.heading}</div>
-                            <ul>
-                              {
-                                group.links && group.links.map((link,i)=>{
-                                  return(
-                                    <li key={"link-" + i}><a rel={link.nofollow ? "nofollow" : "dofollow"} target={link.is_external ? "_blank" : "_self"} href={link.link} title={link.text + " | " + data.branding_name}>{link.text}</a></li>
-                                  )
-                                })
-                              }
-                            </ul>
-                          </div>
-                        </div>
-                      )
-                    }
                   })
                 }
+              </div>
+              {data.copyright && <div className="pro-small-text">
+                {data.copyright}
               </div>}
-              <div className="pro-col-16">
-                  <div className="pro-links-bar">
-                    {
-                      data.bottom_links && data.bottom_links.map((blink,i)=>{
-                        if(i !== data.bottom_links.length - 1){
-                          return(
-                            <div key={"blink-" + i} className="pro-blink"><a rel={blink.nofollow ? "nofollow" : "dofollow"} target={blink.is_external ? "_blank" : "_self"} href={blink.link} title={blink.text + " | " + data.branding_name}>{blink.text}</a>/ </div>
-                          )
-                        }else{
-                          return(
-                            <div key={"blink-" + i} className="pro-blink"><a rel={blink.nofollow ? "nofollow" : "dofollow"} target={blink.is_external ? "_blank" : "_self"} href={blink.link} title={blink.text + " | " + data.branding_name}>{blink.text}</a></div>
-                          )
-                        }
-                      })
-                    }
-                  </div>
-                  {data.copyright && <div className="pro-small-text">
-                    {data.copyright}
-                  </div>}
-                </div>
             </div>
           </div>
         </div>
       )
     }
   }
+
+  renderSixteenCol() {
+    if (this.state.fetchingData) {
+      return (
+        <div></div>
+      )
+    } else {
+       let data = this.state.dataJSON.data;
+      return (
+        <div className="pro-column-16">
+            {this.renderHTML(data)}
+        </div>
+      );
+    }
+  }
+
+  //     let check = data.description || data.company_icon || data.branding_icon,
+  //     checkTwo = data.link_groups.length > 0,
+  //     fix = check ? 5 : 8;
+  //     return(
+  //       <div className="pro-container">
+  //         <div className="pro-publisher-footer">
+  //           {check && <div className={checkTwo ? "pro-col-5 branding-area" :"pro-col-16 branding-area"}>
+  //             <div className="project-publisher-branding">
+  //               {data.company_icon && <div className="publisher-logo" style={{borderRight:data.branding_icon ? "1px solid #efefef":"none"}}><a href={data.company_url} title={data.company_name} target="_blank"><img src={data.company_icon} height="100%" alt={data.company_name}/></a></div>}
+  //               {data.branding_icon && <div className="project-logo"><a href={data.branding_url} title={data.branding_name} target="_blank"><img src={data.branding_icon} height="100%" alt={data.branding_name}/></a></div>}
+  //             </div>
+  //             {data.description && <div className="project-publisher-description">
+  //               <p>{data.description}</p></div>}
+  //           </div>}
+  //           {checkTwo && <div className={check ? "pro-col-11 links-area":"pro-col-16 links-area"}>
+  //             {
+  //               data.link_groups && data.link_groups.map((group,i)=>{
+  //                 if((i+1) % fix === 0){
+  //                   return(
+  //                     <div key={"group-"+i}>
+  //                       <div className="pro-links-group">
+  //                         <div className="links-group-title">{group.heading}</div>
+  //                         <ul>
+  //                           {
+  //                             group.links && group.links.map((link,i)=>{
+  //                               return(
+  //                                 <li key={"link-"+i}><a rel={link.nofollow ? "nofollow" : "dofollow"} target = {link.is_external ? "_blank" : "_self"} href={link.link} title={link.text+" | "+data.branding_name}>{link.text}</a></li>
+  //                               )
+  //                             })
+  //                           }
+  //                         </ul>
+  //                       </div>
+  //                       <div className="pro-clear-fix"></div>
+  //                     </div>
+  //                   )
+  //                 }else{
+  //                   return(
+  //                     <div key={"group-"+i}>
+  //                       <div className="pro-links-group">
+  //                         <div className="links-group-title">{group.heading}</div>
+  //                         <ul>
+  //                           {
+  //                             group.links && group.links.map((link,i)=>{
+  //                               return(
+  //                                 <li key={"link-"+i}><a rel={link.nofollow ? "nofollow" : "dofollow"} target = {link.is_external ? "_blank" : "_self"} href={link.link} title={link.text+" | "+data.branding_name}>{link.text} </a></li>
+  //                               )
+  //                             })
+  //                           }
+  //                         </ul>
+  //                       </div>
+  //                     </div>
+  //                   )
+  //                 }
+  //               })
+  //             }
+  //           </div>}
+  //           <div className="pro-col-16">
+  //               <div className="pro-links-bar">
+  //                 {
+  //                   data.bottom_links && data.bottom_links.map((blink,i)=>{
+  //                     if(i !== data.bottom_links.length - 1){
+  //                       return(
+  //                         <div key={"blink-"+i} className="pro-blink"><a rel={blink.nofollow ? "nofollow" : "dofollow"} target = {blink.is_external ? "_blank" : "_self"} href={blink.link} title={blink.text+" | "+data.branding_name}>{blink.text}</a>/ </div>
+  //                       )
+  //                     }else{
+  //                       return(
+  //                         <div key={"blink-" + i} className="pro-blink"><a rel={blink.nofollow ? "nofollow" : "dofollow"} target={blink.is_external ? "_blank" : "_self"} href={blink.link} title={blink.text + " | " + data.branding_name}>{blink.text}</a></div>
+  //                       )
+  //                     }
+  //                   })
+  //                 }
+  //               </div>
+  //               {data.copyright && <div className="pro-small-text">
+  //                 {data.copyright}
+  //               </div>}
+  //             </div>
+  //         </div>
+  //       </div>
+  //     )
+  //   }
+  // }
+  renderFourCol() {
+    if (this.state.fetchingData) {
+      return (
+        <div></div>
+      )
+    } else {
+      let data = this.state.dataJSON.data;
+      return (
+        <div className="pro-column-4">
+          {this.renderHTML(data)}
+        </div>
+      );
+    }
+  }
   render() {
     switch(this.props.mode) {
       case 'col16' :
         return this.renderSixteenCol();
-        break;
       case 'col4' :
         return this.renderFourCol();
-        break;
+      default:
+        return this.renderHTML(this.state.dataJSON.data);
     }
   }
 }

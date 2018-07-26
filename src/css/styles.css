@@ -4,6 +4,20 @@
 @font-face {
   font-family: Avenir-Bold;
   src: url("./../fonts/AEH.ttf") format("opentype"); }
+
+.pro-column-4 {
+  width: 300px;
+}
+
+.pro-column-7 {
+  width: 540px;
+}
+
+.pro-column-16 {
+  width: 1260px;
+  margin-right: 0px !important;
+}
+
 .pro-container{
   width: 1260px;
   margin-left: auto;
@@ -104,6 +118,9 @@
   line-height: 28px;
   vertical-align: bottom;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .pro-publisher-footer .pro-col-11 .pro-links-group ul, .pro-publisher-footer .pro-col-16 .pro-links-group ul{
   margin-top: 16px;
@@ -183,7 +200,9 @@
   width: 300px;
 }
 .pro-links-group-container{
-  display: inline;
+  display: inline-block;
+  vertical-align: top;
+  word-wrap: break-word;
 }
 @media screen and (max-width: 500px){
   .container, .pro-publisher-footer .pro-col-5, .pro-publisher-footer .pro-col-11, .pro-publisher-footer .pro-col-16{
