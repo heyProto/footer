@@ -131,20 +131,18 @@ export default class toFooter extends React.Component {
                 })
               }
             </div>}
-            <div className="pro-col-16">
-              <div className="pro-links-bar">
-                {
-                  data.bottom_links && data.bottom_links.map((blink, i) => {
-                      return (
-                        <div key={"blink-" + i} className="pro-blink"><a rel={blink.nofollow ? "nofollow" : "dofollow"} target={blink.is_external ? "_blank" : "_self"} href={blink.link} title={blink.text + " | " + data.branding_name}>{blink.text}</a>{(i !== data.bottom_links.length - 1)? "/":""} </div>
-                      )
-                  })
-                }
-              </div>
-              {data.copyright && <div className="pro-small-text">
-                {data.copyright}
-              </div>}
+            <div className="pro-links-bar">
+              {
+                data.bottom_links && data.bottom_links.map((blink, i) => {
+                    return (
+                      <div key={"blink-" + i} className="pro-blink"><a rel={blink.nofollow ? "nofollow" : "dofollow"} target={blink.is_external ? "_blank" : "_self"} href={blink.link} title={blink.text + " | " + data.branding_name}>{blink.text}</a>{(i !== data.bottom_links.length - 1)? "/":""} </div>
+                    )
+                })
+              }
             </div>
+            {data.copyright && <div className="pro-small-text">
+              {data.copyright}
+            </div>}
           </div>
         </div>
       )
