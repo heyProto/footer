@@ -5,15 +5,15 @@
   font-family: Avenir-Bold;
   src: url("https://cdn.protograph.pykih.com/lib/AEH.ttf") format("opentype"); }
 
-.pro-column-4 {
+.pro-col-4 {
   width: 300px;
 }
 
-.pro-column-7 {
+.pro-col-7 {
   width: 540px;
 }
 
-.pro-column-16 {
+.pro-col-16 {
   width: 1260px;
   margin-right: 0px !important;
 }
@@ -166,37 +166,37 @@
   font-size: 10px;
   margin-top: 8px;
 }
-.pro-column-4 .container,.pro-column-4 .pro-publisher-footer .pro-col-5,.pro-column-4 .pro-publisher-footer .pro-col-11,.pro-column-4 .pro-publisher-footer .pro-col-16{
+.pro-col-4 .container,.pro-col-4 .pro-publisher-footer .pro-col-5,.pro-col-4 .pro-publisher-footer .pro-col-11,.pro-col-4 .pro-publisher-footer .pro-col-16{
   width: 100%;
 }
 
-.pro-column-4 .pro-publisher-footer .pro-col-5 .project-publisher-branding .publisher-logo,.pro-column-4 .pro-publisher-footer .pro-col-5 .project-publisher-branding .project-logo{
+.pro-col-4 .pro-publisher-footer .pro-col-5 .project-publisher-branding .publisher-logo,.pro-col-4 .pro-publisher-footer .pro-col-5 .project-publisher-branding .project-logo{
   height: 20px;
 }
 
-.pro-column-4 .pro-publisher-footer .branding-area{
+.pro-col-4 .pro-publisher-footer .branding-area{
   width: 100%;
   padding: 0px 10px;
   text-align: center;
 }
 
-.pro-column-4 .pro-publisher-footer .links-area{
+.pro-col-4 .pro-publisher-footer .links-area{
   width: 100%;
   text-align: center;
   float: none;
 }
 
-.pro-column-4 .pro-publisher-footer .pro-col-11 .pro-links-group{
+.pro-col-4 .pro-publisher-footer .pro-col-11 .pro-links-group{
   float: none;
   vertical-align: top;
   margin-left: 5px;
   margin-right: 5px;
 }
 
-.pro-column-4 .pro-publisher-footer .pro-col-11 .pro-links-group ul{
+.pro-col-4 .pro-publisher-footer .pro-col-11 .pro-links-group ul{
   margin-top: 8px;
 }
-.pro-column-4 .pro-container{
+.pro-col-4 .pro-container{
   width: 300px;
 }
 .pro-links-group-container{

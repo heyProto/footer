@@ -157,7 +157,7 @@ export default class toFooter extends React.Component {
     } else {
        let data = this.state.dataJSON.data;
       return (
-        <div className="pro-column-16">
+        <div className="pro-col-16">
             {this.renderHTML(data)}
         </div>
       );
@@ -172,7 +172,7 @@ export default class toFooter extends React.Component {
     } else {
       let data = this.state.dataJSON.data;
       return (
-        <div className="pro-column-4">
+        <div className="pro-col-4">
           {this.renderHTML(data)}
         </div>
       );
