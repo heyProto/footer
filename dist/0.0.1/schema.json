@@ -8,7 +8,6 @@
       "properties": {
         "company_icon":{
           "type":"string",
-          "format":"uri",
           "title":"Company Icon"
         },
         "company_name": {
@@ -17,12 +16,10 @@
         },
         "company_url": {
           "type": "string",
-          "format": "uri",
           "title": "Company Url"
         },
         "branding_icon":{
           "type":"string",
-          "format":"uri",
           "title":"Branding Icon"
         },
         "branding_name": {
@@ -31,7 +28,6 @@
         },
         "branding_url": {
           "type": "string",
-          "format": "uri",
           "title": "Branding Url"
         },
         "description":{
@@ -64,7 +60,6 @@
                     },
                     "link":{
                       "type":"string",
-                      "format":"uri",
                       "title":"Link URL"
                     },
                     "is_external":{
@@ -95,7 +90,6 @@
               },
               "link":{
                 "type":"string",
-                "format":"uri",
                 "title": "Link URL"
               },
               "is_external":{

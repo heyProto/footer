@@ -16,7 +16,6 @@ export default class editToFooter extends React.Component {
       uiSchemaJSON: {},
       refLinkDetails: undefined
     }
-    this.refLinkSourcesURL = window.ref_link_sources_url
     this.toggleMode = this.toggleMode.bind(this);
     this.formValidator = this.formValidator.bind(this);
   }
@@ -27,7 +26,7 @@ export default class editToFooter extends React.Component {
       dataJSON: this.state.dataJSON,
       schemaJSON: this.state.schemaJSON,
     }
-    getDataObj["name"] = getDataObj.dataJSON.data.title.substr(0,225); // Reduces the name to ensure the slug does not get too long
+    getDataObj["name"] = getDataObj.dataJSON.data.branding_name.substr(0,225); // Reduces the name to ensure the slug does not get too long
     return getDataObj;
   }
 
@@ -37,16 +36,14 @@ export default class editToFooter extends React.Component {
       axiosAll([
         axiosGet(this.props.dataURL),
         axiosGet(this.props.schemaURL),
-        axiosGet(this.props.uiSchemaURL),
-        axiosGet(this.refLinkSourcesURL)
+        axiosGet(this.props.uiSchemaURL)
       ])
-      .then(axiosSpread((card, schema, uiSchema, linkSources) => {
+      .then(axiosSpread((card, schema, uiSchema) => {
         let stateVars = {
           fetchingData: false,
           dataJSON: card.data,
           schemaJSON: schema.data,
-          uiSchemaJSON: uiSchema.data,
-          refLinkDetails: linkSources.data
+          uiSchemaJSON: uiSchema.data
         };
 
         this.setState(stateVars);
@@ -54,77 +51,27 @@ export default class editToFooter extends React.Component {
     }
   }
 
-  isUrlValid(url) {
-    if (!url) return false;
-    var res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
-    if (res == null)
-      return false;
-    else
-      return true;
-  }
-
-  parseUrl(url) {
-    var parser = document.createElement('a'),
-      search;
-    parser.href = url;
-    return {
-      protocol: parser.protocol,
-      host: parser.host,
-      hostname: parser.hostname,
-      port: parser.port,
-      pathname: parser.pathname,
-      hash: parser.hash,
-      searchString: parser.search,
-      origin: parser.origin
-    };
-  }
-
   onChangeHandler({formData}) {
-    switch (this.state.step) {
-      case 1:
-        this.setState((prevStep, prop) => {
-          let dataJSON = prevStep.dataJSON;
-          dataJSON.data = formData;
-          dataJSON.data.section = formData.title;
+    this.setState((prevStep, prop) => {
+      let dataJSON = prevStep.dataJSON;
+      dataJSON.data = formData;
+      dataJSON.data.section = formData.title;
 
-          return {
-            dataJSON: dataJSON
-          }
-        })
-        break;
-      case 2:
-        this.setState((prevState, prop) => {
-          let dataJSON = prevState.dataJSON;
-          if (formData.analysis && formData.analysis.length > 0) {
-            dataJSON.data.analysis = formData.analysis;
-          } else {
-            delete dataJSON.data.analysis;
-          }
-          dataJSON.data.section = dataJSON.data.title;
-          return {
-            dataJSON: dataJSON
-          }
-        })
-        break;
-    }
+      return {
+        dataJSON: dataJSON
+      }
+    })
   }
 
   onSubmitHandler({formData}) {
-    switch(this.state.step) {
-      case 1:
-        this.setState({ step: 2 });
-        break;
-      case 2:
-        if (typeof this.props.onPublishCallback === "function") {
-          let dataJSON = this.state.dataJSON;
-          dataJSON.data.section = dataJSON.data.title;
-          this.setState({ publishing: true, dataJSON: dataJSON });
-          let publishCallback = this.props.onPublishCallback();
-          publishCallback.then((message) => {
-            this.setState({ publishing: false });
-          });
-        }
-        break;
+    if (typeof this.props.onPublishCallback === "function") {
+      let dataJSON = this.state.dataJSON;
+      dataJSON.data.section = dataJSON.data.title;
+      this.setState({ publishing: true, dataJSON: dataJSON });
+      let publishCallback = this.props.onPublishCallback();
+      publishCallback.then((message) => {
+        this.setState({ publishing: false });
+      });
     }
   }
 
@@ -137,77 +84,28 @@ export default class editToFooter extends React.Component {
   }
 
   renderSEO() {
-    let d = this.state.dataJSON.data;
-    let blockquote_string = `<h1>${d.title}</h1><p>${d.by_line}</p><p>${d.published_date}</p>${linksHTML}`;
-    let seo_blockquote = '<blockquote>' + blockquote_string + '</blockquote>'
+    let seo_blockquote = '<blockquote></blockquote>'
     return seo_blockquote;
   }
 
   renderSchemaJSON() {
-    let schema;
-    switch(this.state.step){
-      case 1:
-        schema = JSON.parse(JSON.stringify(this.state.schemaJSON.properties.data))
-        delete schema.properties.analysis;
-        return schema;
-        break;
-      case 2:
-        schema = {
-          properties: {
-            analysis: this.state.schemaJSON.properties.data.properties.analysis
-          },
-          "type": "object",
-        }
-        return schema;
-        break;
-    }
+    return this.state.schemaJSON.properties.data;
   }
 
   renderFormData() {
-    switch(this.state.step) {
-      case 1:
-        return this.state.dataJSON.data;
-        break;
-      case 2:
-        return {analysis: this.state.dataJSON.data.analysis};
-        break;
-    }
+    return this.state.dataJSON.data;
   }
 
   showLinkText() {
-    switch(this.state.step) {
-      case 1:
-        return '';
-        break;
-      case 2:
-        return '< Back';
-        break;
-    }
+    return "";
   }
 
   showButtonText() {
-    switch(this.state.step) {
-      case 1:
-        return 'Next';
-        break;
-      case 2:
-        return 'Publish';
-        break;
-    }
+    return "Publish";
   }
 
   getUISchemaJSON() {
-    switch (this.state.step) {
-      case 1:
-        return this.state.uiSchemaJSON.section1.data;
-        break;
-      case 2:
-        return this.state.uiSchemaJSON.section2.data;
-        break;
-      default:
-        return {};
-        break;
-    }
+    return this.state.uiSchemaJSON.data;
   }
 
   onPrevHandler() {
