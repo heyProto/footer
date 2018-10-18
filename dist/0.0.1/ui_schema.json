@@ -1,1 +1,10 @@
-{"data": {}}
+{
+	"data": {
+		"description": {
+			"ui:widget": "textarea"
+		},
+		"copyright": {
+			"ui:widget": "textarea"
+		}
+	}
+}
